@@ -1,0 +1,47 @@
+extends layout
+
+block content
+      .breadcrumbs
+        .row
+          .content.mt-3
+            .col-sm-12
+              .alert.alert-success.alert-dismissible.fade.show(role="alert")
+                span.badge.badge-pill.badge-success Success
+                |  You successfully read this important alert message.
+                button.close(type="button" data-dismiss="alert" aria-label="Close")
+                  span(aria-hidden="true") ×
+
+              // card Game List
+              section.wrapper
+                .container-fostrap
+                  div
+                    img.fostrap-logo(src='imagesTemplate/if_icon-game-controller-a_211667.png')
+                    h1.heading
+                      | #{title}
+                      -if (title == "All Games")
+                        form(action="/allGames" method="post")
+                          input.SeachInput(type='text', name='search', placeholder='Search..')
+                      -else
+                        form(action="/myGames" method="post")
+                          input.SeachInput(type='text', name='search', placeholder='Search..')
+                    if (accounts.length)
+                      .content
+                        .container
+                          .row
+                            each account in accounts
+                              .col-xs-12.col-sm-4
+                                .card
+                                  a.img-card(href='http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html')
+                                    img(src='imagesTemplate/placeholder.png')
+                                  .card-content
+                                    h4.card-title
+                                      a(href='http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html')
+                                        | #{account.username}
+                                    p
+                                      | Game description : #{account.game_description}
+                                      | Game type : #{account.game_type}
+                                  .card-read-more
+                                    a.btn.btn-link.btn-block(href="/game/" + account.id)
+                                      | Read More
+                    else
+                      h1 no results

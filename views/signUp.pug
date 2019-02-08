@@ -1,0 +1,43 @@
+extends layoutlogin
+
+block content
+  .wrapper
+    img#logowithtext(src="/images/logowithtext.png" alt="logo with text")
+    .container
+      h1 Create an Account
+      form#uploadForm(ref="uploadForm" action='/signUp',method='POST' enctype="multipart/form-data")
+        input(type="file" name="image" onchange="readURL(this);" style="width: 350px;")
+        img.img-circle#blah(src="#" alt="your image" onerror="this.src='imagesTemplate/avatar/user.png';" style="width:200px;height:200px;")
+        br
+        br
+        input(type="text" name="username" placeholder="Username" autocomplete="off" required)
+        input(type="email" name="email" placeholder="Email" autocomplete="off" required)
+        input(type="password" name="password" placeholder="Password" autocomplete="off" required)
+        button(type="submit") Sign Up
+
+      -if (error)
+        .alert.alert-danger(role="alert")
+          button.close(type="button" data-dismiss="alert" aria-label="Close" style="z-index: 2;")
+            span(aria-hidden="true") ×
+          strong This #{error} !
+          |  Use another one
+      -if (emptyField)
+        .alert.alert-warning(role="alert")
+          button.close(type="button" data-dismiss="alert" aria-label="Close" style="z-index: 2;")
+            span(aria-hidden="true") ×
+          strong You must fill all the fields !
+          |  try again
+      p Already have an account ?
+      form(action='/')
+        button#SignUp-button(onclick="") Login
+    ul.bg-bubbles
+      li
+      li
+      li
+      li
+      li
+      li
+      li
+      li
+      li
+      li

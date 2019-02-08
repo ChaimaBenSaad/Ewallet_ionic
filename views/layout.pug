@@ -1,0 +1,194 @@
+doctype html
+html.no-js(lang="")
+  head
+    title= title
+    link(rel="apple-touch-icon" href="apple-icon.png")
+    link(rel="shortcut icon" href="favicon.ico")
+    link(rel="stylesheet" href="cssTemplate/normalize.css")
+    link(rel="stylesheet" href="cssTemplate/bootstrap.min.css")
+    link(rel="stylesheet" href="cssTemplate/font-awesome.min.css")
+    link(rel="stylesheet" href="cssTemplate/themify-icons.css")
+    link(rel="stylesheet" href="cssTemplate/flag-icon.min.css")
+    link(rel="stylesheet" href="cssTemplate/cs-skin-elastic.css")
+    link(rel='stylesheet', href='/stylesheets/styleGameCards.css')
+    // <link rel="stylesheet" href="cssTemplate/bootstrap-select.less">
+    link(rel="stylesheet" href="scssTemplate/style.css")
+    link(href="cssTemplate/lib/vector-map/jqvmap.min.css" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css")
+    script(src="/jsTemplate/vendor/jquery-2.1.4.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js")
+    script(src="/jsTemplate/plugins.js")
+    script(src="/jsTemplate/main.js")
+    script(src="/jsTemplate/lib/chart-js/Chart.bundle.js")
+    script(src="/jsTemplate/dashboard.js")
+    script(src="/jsTemplate/widgets.js")
+    script(src="/jsTemplate/lib/vector-map/jquery.vmap.js")
+    script(src="/jsTemplate/lib/vector-map/jquery.vmap.min.js")
+    script(src="/jsTemplate/lib/vector-map/jquery.vmap.sampledata.js")
+    script(src="/jsTemplate/lib/vector-map/country/jquery.vmap.world.js")
+    script.
+      ( function ( $ ) {
+      "use strict";
+      jQuery( '#vmap' ).vectorMap( {
+      map: 'world_en',
+      backgroundColor: null,
+      color: '#ffffff',
+      hoverOpacity: 0.7,
+      selectedColor: '#1de9b6',
+      enableZoom: true,
+      showTooltip: true,
+      values: sample_data,
+      scaleColors: [ '#1de9b6', '#03a9f5' ],
+      normalizeFunction: 'polynomial'
+      } );
+      } )( jQuery );
+  body
+  // Left Panel
+  aside#left-panel.left-panel
+    nav.navbar.navbar-expand-sm.navbar-default
+      .navbar-header
+        button.navbar-toggler(type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation")
+          i.fa.fa-bars
+        a.navbar-brand(href="./")
+          img(src="imagesTemplate/logo.png" alt="Logo")
+        a.navbar-brand.hidden(href="./")
+          img(src="imagesTemplate/logo2.png" alt="Logo")
+      #main-menu.main-menu.collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li.active
+            a(href="/home")
+              i.menu-icon.fa.fa-dashboard
+              | Dashboard
+
+          h3.menu-title Games
+          // /.menu-title
+          li.menu-item-has-children.dropdown
+            a.dropdown-toggle(href="/allGames"  aria-haspopup="true" aria-expanded="false")
+              i.menu-icon.fa.fa-laptop
+              | All games
+          li.menu-item-has-children.dropdown
+            a.dropdown-toggle(href="/myGames"  aria-haspopup="true" aria-expanded="false")
+              i.menu-icon.fa.fa-laptop
+              | My games
+          h3.menu-title Settings
+          // /.menu-title
+          li.menu-item-has-children.dropdown
+            a.dropdown-toggle(href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+              i.menu-icon.fa.fa-tasks
+              | Security
+            ul.sub-menu.children.dropdown-menu
+              li
+                i.menu-icon.fa.fa-fort-awesome
+                a(href="font-fontawesome.html") Font Awesome
+              li
+                i.menu-icon.ti-themify-logo
+                a(href="font-themify.html") Themefy Icons
+          li
+            a(href="widgets.html")
+              i.menu-icon.ti-email
+              | Parameters
+          li.menu-item-has-children.dropdown
+            a.dropdown-toggle(href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+              i.menu-icon.fa.fa-bar-chart
+              | FAQ
+            ul.sub-menu.children.dropdown-menu
+              li
+                i.menu-icon.fa.fa-line-chart
+                a(href="charts-chartjs.html") Chart JS
+              li
+                i.menu-icon.fa.fa-area-chart
+                a(href="charts-flot.html") Flot Chart
+              li
+                i.menu-icon.fa.fa-pie-chart
+                a(href="charts-peity.html") Peity ChartFto
+          h3.menu-title Extras
+          // /.menu-title
+          li.menu-item-has-children.dropdown
+            a.dropdown-toggle(href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+              i.menu-icon.fa.fa-glass
+              | EXCHANGE
+            ul.sub-menu.children.dropdown-menu
+              li
+                i.menu-icon.fa.fa-sign-in
+                a(href="page-login.html") Login
+              li
+                i.menu-icon.fa.fa-sign-in
+                a(href="page-register.html") Register
+              li
+                i.menu-icon.fa.fa-paper-plane
+                a(href="pages-forget.html") Forget Pass
+      // /.navbar-collapse
+  // /#left-panel
+  // Left Panel
+  // Right Panel
+  #right-panel.right-panel
+    // Header
+    header#header.header
+      .header-menu
+        .col-sm-7
+          a#menuToggle.menutoggle.pull-left
+            i.fa.fa.fa-tasks
+          .header-left
+            button.search-trigger
+              i.fa.fa-search
+            .form-inline
+              form.search-form
+                input.form-control.mr-sm-2(type="text" placeholder="Search ..." aria-label="Search")
+                button.search-close(type="submit")
+                  i.fa.fa-close
+            .dropdown.for-notification
+              button#notification.btn.btn-secondary.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                i.fa.fa-bell
+                span.count.bg-danger 5
+              .dropdown-menu(aria-labelledby="notification")
+                p.red You have 3 Notification
+                a.dropdown-item.media.bg-flat-color-1(href="#")
+                  i.fa.fa-check
+                  p Server #1 overloaded.
+                a.dropdown-item.media.bg-flat-color-4(href="#")
+                  i.fa.fa-info
+                  p Server #2 overloaded.
+                a.dropdown-item.media.bg-flat-color-5(href="#")
+                  i.fa.fa-warning
+                  p Server #3 overloaded.
+            .dropdown.for-message
+              button#message.btn.btn-secondary.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                i.ti-email
+                span.count.bg-primary 9
+              .dropdown-menu(aria-labelledby="message")
+                p.red You have 4 Mails
+                a.dropdown-item.media.bg-flat-color-1(href="#")
+                  span.photo.media-left
+                    img(alt="avatar" src="imagesTemplate/avatar/1.jpg")
+                  span.message.media-body
+                    span.name.float-left Jonathan Smith
+                    span.time.float-right Just now
+                    p Hello, this is an example msg
+                a.dropdown-item.media.bg-flat-color-4(href="#")
+                  span.photo.media-left
+                    img(alt="avatar" src="imagesTemplate/avatar/2.jpg")
+                  span.message.media-body
+                    span.name.float-left Jack Sanders
+                    span.time.float-right 5 minutes ago
+                    p Lorem ipsum dolor sit amet, consectetur
+                a.dropdown-item.media.bg-flat-color-5(href="#")
+                  span.photo.media-left
+                    img(alt="avatar" src="imagesTemplate/avatar/3.jpg")
+                  span.message.media-body
+                    span.name.float-left Cheryl Wheeler
+                    span.time.float-right 10 minutes ago
+                    p Hello, this is an example msg
+                a.dropdown-item.media.bg-flat-color-3(href="#")
+                  span.photo.media-left
+                    img(alt="avatar" src="imagesTemplate/avatar/4.jpg")
+                  span.message.media-body
+                    span.name.float-left Rachel Santos
+                    span.time.float-right 15 minutes ago
+                    p Lorem ipsum dolor sit amet, consectetur
+        .col-sm-5
+          .user-area.dropdown.float-right
+            form(action='/logout')
+              button.btn.btn-outline-danger(type="submit") SIGN OUT
+    // /header
+    // Header
+    block content

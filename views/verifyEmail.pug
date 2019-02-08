@@ -1,0 +1,21 @@
+extends layoutlogin
+
+block content
+  .wrapper
+    .container(style="margin-top: 10%;")
+      h3(style="color: white;") For security purposes, we need you to verify your email address before continuing on our platform.
+      form(action='/sendMailer', method='POST')
+        button(type="submit") Send it again
+      form(action='/', method='GET')
+        button(type="submit") Go to login
+    ul.bg-bubbles
+      li
+      li
+      li
+      li
+      li
+      li
+      li
+      li
+      li
+      li

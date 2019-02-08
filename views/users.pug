@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title= title
+  body
+  h1= title
+  table(border="1")
+    tr
+      th Id
+      th Username
+      th Adress
+      th Email
+      th Account type
+      th Image
+      th Game description
+      th Game type
+      th Action
+    each account in accounts
+      tr
+        td #{account.id}
+        td #{account.username}
+        td #{account.address}
+        td #{account.email}
+        td #{account.account_type}
+        td #{account.image}
+        td #{account.game_description}
+        td #{account.game_type}
+
+        td
+          a(href="/account/edit/" + account.id) Edit

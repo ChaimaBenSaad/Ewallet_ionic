@@ -1,0 +1,439 @@
+extends layout
+
+block content
+      .breadcrumbs
+        .row
+          .col-sm-4
+            .page-header.float-left
+              .page-title
+                h1 Welcome to Placoin Wallet
+          .col-sm-8
+            .page-header.float-right
+              .page-title
+                ol.breadcrumb.text-right
+                  .card
+                    .card-body
+                      .stat-widget-one
+                        .stat-icon.dib
+                          i.ti-money.text-success.border-success
+                        .stat-content.dib
+                          .stat-text Total Balance
+                          .stat-digit #{userBalance}
+      .animated.fadeIn
+        .rows
+          .animated.fadeIn
+            .col-xs-6.col-sm-6
+              .card
+                .card-header
+                  strong Send Coins
+                  .card-body.card-block
+                    form.form-horizontal(action="/send" method="post")
+                        .row.form-group
+                          .col.col-md-3
+                            label.form-control-label(for="select") Currency:
+                          .col-12.col-md-9
+                            select#select.form-control(name="currency")
+                              option(value="0") Playcoin
+                        .col.col-md-3
+                          label.form-control-label(for="text-input") To:
+                        .input-group
+                          .input-group-addon
+                            i.fa.fa-qrcode
+                          input.form-control(type="text" name="to" placeholder="Reciever address" required)
+                        .row.form-group
+                        .col.col-md-3
+                           label.form-control-label(for="text-input") Amount:
+                        .input-group
+                          .input-group-addon
+                            i.fa.fa-money
+                          input.form-control(type="number" name="amount" placeholder="Amount to send" required)
+                        .row.form-group
+                          .col.col-md-3
+                            br
+                            button.btn.btn-primary.btn-sm(type="submit")
+                              i.fa.fa-arrow-circle-o-right
+                              |  Send
+          .col-xs-6.col-sm-6
+            .card
+              .card-header
+                strong Receive Coins
+              .card-body.card-block
+                form.form-horizontal(action="/receive" method="post")
+                    .row.form-group
+                      .col.col-md-3
+                        label.form-control-label(for="select") Currency:
+                      .col-12.col-md-9
+                        select#select.form-control(name="currency")
+                          option(value="0") Playcoin
+                    .col.col-md-3
+                      label.form-control-label(for="text-input") From:
+                    .input-group
+                      .input-group-addon
+                        i.fa.fa-qrcode
+                      input.form-control(type="text" name="from" placeholder="Sender address" required)
+                    .row.form-group
+                      .col.col-md-3
+                        br
+                        button.btn.btn-primary.btn-sm(type="submit")
+                          i.fa.fa-arrow-circle-o-right
+                          |  Receive
+
+          .col-md-12
+             .card
+               .card-header
+                 strong.card-title Your transactions
+               .card-body
+                 #bootstrap-data-table_wrapper.dataTables_wrapper.container-fluid.dt-bootstrap4.no-footer
+                   .row
+                     .col-sm-12.col-md-6
+                       #bootstrap-data-table_length.dataTables_length
+                         label
+                           | Show
+                           select.form-control.form-control-sm(name="bootstrap-data-table_length" aria-controls="bootstrap-data-table")
+                             option(value="10") 10
+                             option(value="20") 20
+                             option(value="50") 50
+                             option(value="-1") All
+                           |  entries
+                     .col-sm-12.col-md-6
+                       #bootstrap-data-table_filter.dataTables_filter
+                         label
+                           | Search:
+                           input.form-control.form-control-sm(type="search" placeholder="" aria-controls="bootstrap-data-table")
+                   .row
+                     .col-sm-12
+                       table#bootstrap-data-table.table.table-striped.table-bordered.dataTable.no-footer(role="grid" aria-describedby="bootstrap-data-table_info")
+                         thead
+                           tr(role="row")
+                             th.sorting_asc(tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 202px;") Name
+                             th.sorting(tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 337px;") Position
+                             th.sorting(tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 148px;") Office
+                             th.sorting(tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 117px;") Salary
+                         tbody
+                           tr.odd(role="row")
+                             td.sorting_1 Airi Satou
+                             td Accountant
+                             td Tokyo
+                             td $162,700
+                           tr.even(role="row")
+                             td.sorting_1 Angelica Ramos
+                             td Chief Executive Officer (CEO)
+                             td London
+                             td $1,200,000
+                           tr.odd(role="row")
+                             td.sorting_1 Ashton Cox
+                             td Junior Technical Author
+                             td San Francisco
+                             td $86,000
+                           tr.even(role="row")
+                             td.sorting_1 Bradley Greer
+                             td Software Engineer
+                             td London
+                             td $132,000
+                           tr.odd(role="row")
+                             td.sorting_1 Brenden Wagner
+                             td Software Engineer
+                             td San Francisco
+                             td $206,850
+                           tr.even(role="row")
+                             td.sorting_1 Brielle Williamson
+                             td Integration Specialist
+                             td New York
+                             td $372,000
+                           tr.odd(role="row")
+                             td.sorting_1 Bruno Nash
+                             td Software Engineer
+                             td London
+                             td $163,500
+                           tr.even(role="row")
+                             td.sorting_1 Caesar Vance
+                             td Pre-Sales Support
+                             td New York
+                             td $106,450
+                           tr.odd(role="row")
+                             td.sorting_1 Cara Stevens
+                             td Sales Assistant
+                             td New York
+                             td $145,600
+                           tr.even(role="row")
+                             td.sorting_1 Cedric Kelly
+                             td Senior Javascript Developer
+                             td Edinburgh
+                             td $433,060
+                   .row
+                     .col-sm-12.col-md-5
+                       #bootstrap-data-table_info.dataTables_info(role="status" aria-live="polite") Showing 1 to 10 of 57 entries
+                     .col-sm-12.col-md-7
+                       #bootstrap-data-table_paginate.dataTables_paginate.paging_simple_numbers
+                         ul.pagination
+                           li#bootstrap-data-table_previous.paginate_button.page-item.previous.disabled
+                             a.page-link(href="#" aria-controls="bootstrap-data-table" data-dt-idx="0" tabindex="0") Previous
+                           li.paginate_button.page-item.active
+                             a.page-link(href="#" aria-controls="bootstrap-data-table" data-dt-idx="1" tabindex="0") 1
+                           li.paginate_button.page-item
+                             a.page-link(href="#" aria-controls="bootstrap-data-table" data-dt-idx="2" tabindex="0") 2
+                           li.paginate_button.page-item
+                             a.page-link(href="#" aria-controls="bootstrap-data-table" data-dt-idx="3" tabindex="0") 3
+                           li.paginate_button.page-item
+                             a.page-link(href="#" aria-controls="bootstrap-data-table" data-dt-idx="4" tabindex="0") 4
+                           li.paginate_button.page-item
+                             a.page-link(href="#" aria-controls="bootstrap-data-table" data-dt-idx="5" tabindex="0") 5
+                           li.paginate_button.page-item
+                             a.page-link(href="#" aria-controls="bootstrap-data-table" data-dt-idx="6" tabindex="0") 6
+                           li#bootstrap-data-table_next.paginate_button.page-item.next
+                             a.page-link(href="#" aria-controls="bootstrap-data-table" data-dt-idx="7" tabindex="0") Next
+
+      .content.mt-3
+        .col-sm-12
+          .alert.alert-success.alert-dismissible.fade.show(role="alert")
+            span.badge.badge-pill.badge-success Success
+            |  You successfully read this important alert message.
+            button.close(type="button" data-dismiss="alert" aria-label="Close")
+              span(aria-hidden="true") ×
+        .col-sm-6.col-lg-3
+          .card.text-white.bg-flat-color-1
+            .card-body.pb-0
+              .dropdown.float-right
+                button#dropdownMenuButton.btn.bg-transparent.dropdown-toggle.theme-toggle.text-light(type="button" data-toggle="dropdown")
+                  i.fa.fa-cog
+                .dropdown-menu(aria-labelledby="dropdownMenuButton")
+                  .dropdown-menu-content
+                    a.dropdown-item(href="#") Action
+                    a.dropdown-item(href="#") Another action
+                    a.dropdown-item(href="#") Something else here
+              h4.mb-0
+                span.count 10468
+              p.text-light Members online
+              .chart-wrapper.px-0(style="height:70px;" height="70")
+                canvas#widgetChart1
+        // /.col
+        .col-sm-6.col-lg-3
+          .card.text-white.bg-flat-color-2
+            .card-body.pb-0
+              .dropdown.float-right
+                button#dropdownMenuButton.btn.bg-transparent.dropdown-toggle.theme-toggle.text-light(type="button" data-toggle="dropdown")
+                  i.fa.fa-cog
+                .dropdown-menu(aria-labelledby="dropdownMenuButton")
+                  .dropdown-menu-content
+                    a.dropdown-item(href="#") Action
+                    a.dropdown-item(href="#") Another action
+                    a.dropdown-item(href="#") Something else here
+              h4.mb-0
+                span.count 10468
+              p.text-light Members online
+              .chart-wrapper.px-0(style="height:70px;" height="70")
+                canvas#widgetChart2
+        // /.col
+        .col-sm-6.col-lg-3
+          .card.text-white.bg-flat-color-3
+            .card-body.pb-0
+              .dropdown.float-right
+                button#dropdownMenuButton.btn.bg-transparent.dropdown-toggle.theme-toggle.text-light(type="button" data-toggle="dropdown")
+                  i.fa.fa-cog
+                .dropdown-menu(aria-labelledby="dropdownMenuButton")
+                  .dropdown-menu-content
+                    a.dropdown-item(href="#") Action
+                    a.dropdown-item(href="#") Another action
+                    a.dropdown-item(href="#") Something else here
+              h4.mb-0
+                span.count 10468
+              p.text-light Members online
+            .chart-wrapper.px-0(style="height:70px;" height="70")
+              canvas#widgetChart3
+        // /.col
+        .col-sm-6.col-lg-3
+          .card.text-white.bg-flat-color-4
+            .card-body.pb-0
+              .dropdown.float-right
+                button#dropdownMenuButton.btn.bg-transparent.dropdown-toggle.theme-toggle.text-light(type="button" data-toggle="dropdown")
+                  i.fa.fa-cog
+                .dropdown-menu(aria-labelledby="dropdownMenuButton")
+                  .dropdown-menu-content
+                    a.dropdown-item(href="#") Action
+                    a.dropdown-item(href="#") Another action
+                    a.dropdown-item(href="#") Something else here
+              h4.mb-0
+                span.count 10468
+              p.text-light Members online
+              .chart-wrapper.px-3(style="height:70px;" height="70")
+                canvas#widgetChart4
+        // /.col
+        .col-lg-3.col-md-6
+          .social-box.facebook
+            i.fa.fa-facebook
+            ul
+              li
+                sctrong
+                  span.count 40
+                  |  k
+                  span friends
+              li
+                sctrong
+                  span.count 450
+                  span feeds
+          // /social-box
+        // /.col
+        .col-lg-3.col-md-6
+          .social-box.twitter
+            i.fa.fa-twitter
+            ul
+              li
+                sctrong
+                  span.count 30
+                  |  k
+                  span friends
+              li
+                sctrong
+                  span.count 450
+                  span tweets
+          // /social-box
+        // /.col
+        .col-lg-3.col-md-6
+          .social-box.linkedin
+            i.fa.fa-linkedin
+            ul
+              li
+                sctrong
+                  span.count 40
+                  |  +
+                  span contacts
+              li
+                sctrong
+                  span.count 250
+                  span feeds
+          // /social-box
+        // /.col
+        .col-lg-3.col-md-6
+          .social-box.google-plus
+            i.fa.fa-google-plus
+            ul
+              li
+                sctrong
+                  span.count 94
+                  |  k
+                  span followers
+              li
+                sctrong
+                  span.count 92
+                  span circles
+          // /social-box
+        // /.col
+        .col-xl-6
+          .card
+            .card-body
+              .row
+                .col-sm-4
+                  h4.card-title.mb-0 Traffic
+                  .small.text-muted October 2017
+                // /.col
+                .col-sm-8.hidden-sm-down
+                  button.btn.btn-primary.float-right.bg-flat-color-1(type="button")
+                    i.fa.fa-cloud-download
+                  .btn-toolbar.float-right(role="toolbar" aria-label="Toolbar with button groups")
+                    .btn-group.mr-3(data-toggle="buttons" aria-label="First group")
+                      label.btn.btn-outline-secondary
+                        input#option1(type="radio" name="options")
+                        |  Day
+                      label.btn.btn-outline-secondary.active
+                        input#option2(type="radio" name="options" checked="")
+                        |  Month
+                      label.btn.btn-outline-secondary
+                        input#option3(type="radio" name="options")
+                        |  Year
+                // /.col
+              // /.row
+              .chart-wrapper.mt-4
+                canvas#trafficChart(style="height:200px;" height="200")
+            .card-footer
+              ul
+                li
+                  .text-muted Visits
+                  strong 29.703 Users (40%)
+                  .progress.progress-xs.mt-2(style="height: 5px;")
+                    .progress-bar.bg-success(role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100")
+                li.hidden-sm-down
+                  .text-muted Unique
+                  strong 24.093 Users (20%)
+                  .progress.progress-xs.mt-2(style="height: 5px;")
+                    .progress-bar.bg-info(role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100")
+                li
+                  .text-muted Pageviews
+                  strong 78.706 Views (60%)
+                  .progress.progress-xs.mt-2(style="height: 5px;")
+                    .progress-bar.bg-warning(role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100")
+                li.hidden-sm-down
+                  .text-muted New Users
+                  strong 22.123 Users (80%)
+                  .progress.progress-xs.mt-2(style="height: 5px;")
+                    .progress-bar.bg-danger(role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100")
+                li.hidden-sm-down
+                  .text-muted Bounce Rate
+                  strong 40.15%
+                  .progress.progress-xs.mt-2(style="height: 5px;")
+                    .progress-bar(role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100")
+        .col-xl-3.col-lg-6
+          section.card
+            .twt-feed.blue-bg
+              .corner-ribon.black-ribon
+                i.fa.fa-twitter
+              .fa.fa-twitter.wtt-mark
+              .media
+                a(href="#")
+                  img.align-self-center.rounded-circle.mr-3(style="width:85px; height:85px;" alt="" src="imagesTemplate/admin.jpg")
+                .media-body
+                  h2.text-white.display-6 Jim Doe
+                  p.text-light Project Manager
+            .weather-category.twt-category
+              ul
+                li.active
+                  h5 750
+                  |                                 Tweets
+                li
+                  h5 865
+                  |                                 Following
+                li
+                  h5 3645
+                  |                                 Followers
+            .twt-write.col-sm-12
+              textarea.form-control.t-text-area(placeholder="Write your Tweet and Enter" rows="1")
+            footer.twt-footer
+              a(href="#")
+                i.fa.fa-camera
+              a(href="#")
+                i.fa.fa-map-marker
+              |                         New Castle, UK
+              span.pull-right
+                | 32
+        .col-xl-3.col-lg-6
+          .card
+            .card-body
+              .stat-widget-one
+                .stat-icon.dib
+                  i.ti-money.text-success.border-success
+                .stat-content.dib
+                  .stat-text Total Profit
+                  .stat-digit 1,012
+        .col-xl-3.col-lg-6
+          .card
+            .card-body
+              .stat-widget-one
+                .stat-icon.dib
+                  i.ti-user.text-primary.border-primary
+                .stat-content.dib
+                  .stat-text New Customer
+                  .stat-digit 961
+        .col-xl-3.col-lg-6
+          .card
+            .card-body
+              .stat-widget-one
+                .stat-icon.dib
+                  i.ti-layout-grid2.text-warning.border-warning
+                .stat-content.dib
+                  .stat-text Active Projects
+                  .stat-digit 770
+        .col-xl-6
+          .card
+            .card-header
+              h4 World
+            .Vector-map-js
+              #vmap.vmap(style="height: 265px;")

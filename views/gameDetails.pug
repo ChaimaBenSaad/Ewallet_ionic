@@ -1,0 +1,30 @@
+extends layoutGame
+
+block content
+  .breadcrumbs
+    .row
+      .col-sm-4
+        .page-header.float-left
+          .page-title
+
+      .col-sm-12
+        article.post
+          div
+            .absolute-bg(style="background-image: url('../imagesTemplate/placeholder.png');")
+          .post__container
+            span.post__category Supports PlayCoin
+            .post__content
+              header
+                time.post__time Jan 22 2017
+                h1.post__header
+                  span #{account.username}
+                  br
+                  br
+              p.post__text
+                | #{account.game_description}
+                br
+                | game type : #{account.game_type}
+            .post__link
+              form(action='/addToMyGames', method='POST')
+                input(type='hidden', name='gameId', value = account.id)
+                button.buttonGame(type="submit") Add to my games

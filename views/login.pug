@@ -1,0 +1,42 @@
+extends layoutlogin
+
+block content
+  .wrapper
+    img#logowithtext(src="/images/logowithtext.png" alt="logo with text")
+    .container
+      h1 Welcome to #{title}
+      form(action='/', method='POST')
+        input(type="text" name="username" placeholder="Username" autocomplete="off" required)
+        input(type="password" name="password" placeholder="Password" autocomplete="off" required)
+        button(type="submit") Login
+      p Don't have a playcoin Wallet ?
+      // Trigger the modal with a button
+      form(action='')
+        button(type="button" data-toggle="modal" data-target="#myModal") Sign Up
+      // Modal
+      #myModal.modal.fade(role="dialog")
+        .modal-dialog.modal-lg
+          .modal-content
+            .modal-header
+              button.close(type="button" data-dismiss="modal") ×
+              h4.modal-title New to #{title} ? Sign Up now !
+            .modal-body
+              p If you are creating an account to manage your PlayCoin then this option is for you
+              form(action='/signUp')
+                button.btnInverse(onclick="") Create a simple account
+              p If you are a game developer and you are creating an account for your game then this option is for you
+              form(action='/signUpDeveloper')
+                button.btnInverse(onclick="") Create a developer account
+            .modal-footer
+
+    ul.bg-bubbles
+      li
+      li
+      li
+      li
+      li
+      li
+      li
+      li
+      li
+      li
